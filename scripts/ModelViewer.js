@@ -7,8 +7,8 @@ class ModelViewer {
         this.initiateControls()
         this.initiateScene()
 
-        const axesHelper = new THREE.AxesHelper(250);
-        this.scene.add( axesHelper );
+        // const axesHelper = new THREE.AxesHelper(250);
+        // this.scene.add( axesHelper );
 
         this.loading = false
         this.assemblies = []
@@ -69,7 +69,7 @@ class ModelViewer {
 
     initiateScene() {
         this.scene = new THREE.Scene()
-        this.scene.background = new THREE.Color('white')
+        this.scene.background = new THREE.Color('grey')
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
         this.scene.environment =
           pmremGenerator.fromScene( new THREE.RoomEnvironment(), 0.04 ).texture;
@@ -82,27 +82,50 @@ class ModelViewer {
         const zMax = zLen / 2
         const xMax = xLen / 2
 
-        const spotTop = new THREE.PointLight( 0xffffff, 1, 0 );
-        spotTop.position.set(0, yMax + midY, 0)
-        this.scene.add(spotTop)
+        const spotTop = new THREE.DirectionalLight( 0xffffff, 0.2);
+        spotTop.position.set(0, yMax + midY, 2*zMax)
+        spotTop.castShadow
 
-        const spotBack = new THREE.PointLight( 0xffffff, 1, 0 );
-        spotBack.position.set(0, midY, -(zMax + zLen))
-        this.scene.add(spotBack)
+        const spotMidTop = new THREE.DirectionalLight( 0xffffff, 0.25);
+        spotMidTop.position.set(0, 0.9*midY, 0)
+        // spotMidTop.target.position.set(0, 0.4 * midY, 0)
+        // spotMidTop.target.updateMatrixWorld()
+        spotMidTop.castShadow
 
-        const spotLeft = new THREE.PointLight( 0xffffff, 1, 0 );
-        spotLeft.position.set(-(xMax + xLen), midY, zMax)
-        this.scene.add(spotLeft)
+        const spotBack = new THREE.DirectionalLight( 0xffffff, 0.35);
+        spotBack.position.set(0, midY, -zLen)
+        spotBack.target.position.set(0, midY, -zMax)
+        spotBack.target.updateMatrixWorld()
 
-        const spotRight = new THREE.PointLight( 0xffffff, 1, 0 );
-        spotRight.position.set(xMax + xLen, midY, zMax)
-        this.scene.add(spotRight)
+        const spotLeftLeft = new THREE.DirectionalLight( 0xffffff, 0.2);
+        spotLeftLeft.position.set(-xLen, midY, 0)
+        spotLeftLeft.target.position.set(-xMax, midY, 0)
+        spotLeftLeft.target.updateMatrixWorld()
 
-        const spotBottom = new THREE.PointLight( 0xffffff, 1, 0 );
-        spotBottom.position.set(0, - (yMax), 0)
-        this.scene.add(spotBottom)
+        const spotRightRight = new THREE.DirectionalLight( 0xffffff, 0.2);
+        spotRightRight.position.set(xLen, midY, 0)
+        spotRightRight.target.position.set(xMax, midY, 0)
+        spotRightRight.target.updateMatrixWorld()
 
-        this.activeLights = [spotBack, spotLeft, spotRight, spotBottom]
+        const spotLeft = new THREE.DirectionalLight( 0xffffff, 0.3);
+        spotLeft.position.set(-(xMax + xLen), 1.8*midY, 2*zLen)
+        spotLeft.target.position.set(0, 1.2*midY, 0)
+        spotLeft.target.updateMatrixWorld()
+
+        const spotRight = new THREE.DirectionalLight( 0xffffff, 0.3);
+        spotRight.position.set(xMax + xLen, 1.8*midY, 2*zLen)
+        spotRight.target.position.set(0, 1.2*midY, 0)
+        spotRight.target.updateMatrixWorld()
+
+        const spotBottom = new THREE.DirectionalLight( 0xffffff, 0.2);
+        spotBottom.position.set(0, - (yMax + midY), 0)
+
+        this.activeLights = [spotRightRight, spotLeftLeft, spotMidTop, spotBack, spotLeft, spotRight, spotBottom]
+        for (const light of this.activeLights) {
+          this.scene.add(light)
+        }
+
+
     }
 
     frameAssembly(yMax, zLen) {

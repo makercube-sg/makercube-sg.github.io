@@ -44,21 +44,21 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
-    <script src="scripts/Toolbar.js?v19"></script>
+    <script src="scripts/Toolbar.js?v25"></script>
     <script>
         var assemblies = {
-            // "Voron 0.1": {
-            //     assembly: "models/V0.1/assembly.json?v=3",
-            //     materials: "models/V0.1/materials.json?v=2"
-            // },
-            // "Voron 1.8": {
-            //     assembly: "models/v1.8/assembly.json?v=4",
-            //     materials: "models/v1.8/materials.json?v=3"
-            // },
-            // "Voron 2.4": {
-            //     assembly: "models/V2.4/assembly.json?v=10",
-            //     materials: "models/V2.4/materials.json?v=3"
-            // },
+            "Voron 0.1": {
+                assembly: "models/V0.1/assembly.json?v=5",
+                materials: "models/V0.1/materials.json?v=5"
+            },
+            "Voron Trident": {
+                assembly: "models/Trident/assembly.json?v=2",
+                materials: "models/Trident/materials.json?v=14"
+            },
+            "Voron 2.4": {
+                assembly: "models/V2.4/assembly.json?v=12",
+                materials: "models/V2.4/materials.json?v=4"
+            }
             // "Voron Switchwire": {
             //     assembly: "models/vsw/assembly.json?v=6",
             //     materials: "models/vsw/materials.json?v=3"
@@ -67,10 +67,6 @@
             //     assembly: "models/Micron/assembly.json?v=8",
             //     materials: "models/Micron/materials.json?v=9"
             // },
-            "v2_test": {
-                assembly: "models/v2_test/assembly.json",
-                materials: "models/v2_test/materials.json?v=4"
-            }
         }
         Toolbar.addAssemblies(assemblies)
         Toolbar.addAboutButton()
@@ -83,9 +79,9 @@
     <script src="scripts/threejs/examples/js/loaders/GLTFLoader.js"></script>
     <script src="scripts/threejs/examples/js/loaders/STLLoader.js"></script>
     <script src="scripts/threejs/examples/js/environments/RoomEnvironment.js?v=1"></script>
-    <script src="scripts/ModelViewer.js?v=107"></script>
-    <script src="scripts/Materials.js?v=27"></script>
-    <script src="scripts/Assembly.js?v=37"></script>
+    <script src="scripts/ModelViewer.js?v=132"></script>
+    <script src="scripts/Materials.js?v=35"></script>
+    <script src="scripts/Assembly.js?v=50"></script>
     <script>
         const model_viewer = new ModelViewer()
         first_key = Object.keys(assemblies)[0]

@@ -1,0 +1,64 @@
+{
+    "description": "Assembly data for Voron Trident model",
+    "meta": {
+        "assemblyID": "Trident",
+        "srcPath": "models/Trident/",
+        "height": 585,
+        "width": 422,
+        "depth": 417
+    },
+    "models": {
+        "frame": {
+            "src": "frame.stl?v=6",
+            "material": "frameMetal"
+        },
+        "base": {
+            "src": "base.stl?v=4",
+            "material": "basePlastic"
+        },
+        "accent": {
+            "src": "accent.stl?v=4",
+            "material": "accentPlastic"
+        },
+        "solidpanels": {
+            "src": "solidpanels.stl?v=4",
+            "material": "solidPanelsPlastic"
+        },
+        "clearpanels": {
+            "src": "clearpanels.stl?v=4",
+            "material": "clearPanelsPlastic",
+            "visible": "false"
+        },
+        "black": {
+            "src": "black.stl?v=5",
+            "material": "blackPlastic"
+        },
+        "red": {
+            "src": "red.stl?v=4",
+            "material": "redPlastic"
+        },
+        "white": {
+            "src": "white.stl?v=4",
+            "material": "whitePlastic"
+        },
+        "brass": {
+            "src": "brass.stl?v=4",
+            "material": "brass"
+        },
+        "steel": {
+            "src": "steel.stl?v=6",
+            "material": "steel"
+        },
+        "rails": {
+            "src": "rails.stl?v=4",
+            "material": "railsMetal"
+        },
+        "screws": {
+            "src": "screws.stl?v=4",
+            "material": "screwsMetal"
+        }
+    },
+    "toggles": {
+      "Clear panels": ["clearpanels"]
+    }
+}

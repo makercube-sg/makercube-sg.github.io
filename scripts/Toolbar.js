@@ -41,13 +41,13 @@ class Toolbar {
             scene.background.r = storedColor._r/255
             scene.background.g = storedColor._g/255
             scene.background.b = storedColor._b/255
-            jqueryEle.spectrum("set", 
+            jqueryEle.spectrum("set",
                 ["rgba", storedColor._r, storedColor._g, storedColor._b, storedColor._a]
                 .join(" ")
             )
         } else {
             jqueryEle.spectrum("set", initialColor)
-        }        
+        }
     }
 
     static addAssemblies(assemblies) {
@@ -76,10 +76,10 @@ class Toolbar {
         if (text) {
             var text = document.createTextNode(text)
             a.appendChild(text)
-        }        
+        }
         if (fn) {
             a.onclick = fn
-        }        
+        }
         drop.appendChild(a)
         return a;
     }
@@ -94,7 +94,15 @@ class Toolbar {
     // manages toolbar entities that are specific to an assembly, allow for cleaner load and unload
     constructor() {
         this.toggles = []
-        this.colorPickers = [] 
+        this.colorPickers = []
+    }
+
+    addModelsToggle(displayText, models) {
+        this.toggles.push(Toolbar.createDropdownElement("toggleDrop", displayText, () => {
+            for (const model of models) {
+              model_viewer.assemblies[0].models[model].visible = !model_viewer.assemblies[0].models[model].visible
+            }
+        }))
     }
 
     addModelToggle(model, displayText) {
@@ -116,7 +124,7 @@ class Toolbar {
         dropdownEle.appendChild(colorpicker)
         const jqueryEle = $(id)
 
-        
+
         jqueryEle.spectrum({
             type: "color",
             hideAfterPaletteSelect: true,
@@ -132,7 +140,7 @@ class Toolbar {
         var storedColor = window.localStorage.getItem(displayText)
         if (storedColor != null) {
             storedColor = JSON.parse(storedColor)
-            jqueryEle.spectrum("set", 
+            jqueryEle.spectrum("set",
                 ["rgba", storedColor._r, storedColor._g, storedColor._b, storedColor._a]
                 .join(" ")
             )
@@ -140,20 +148,24 @@ class Toolbar {
         } else {
             jqueryEle.spectrum("set", initialColor)
         }
-        
+
         this.colorPickers.push(dropdownEle)
     }
 
     spectrumToMaterial(colorMap, material) { // applies spectrum color map to given material
         material.opacity = colorMap._a
         const color_style_str = "rgb(" + [
-            Math.round(colorMap._r), 
-            Math.round(colorMap._g), 
+            Math.round(colorMap._r),
+            Math.round(colorMap._g),
             Math.round(colorMap._b)
-        ].join(",") + ")"   
+        ].join(",") + ")"
 
         material.color.setStyle(color_style_str)
-        if (!material.isMetal) material.specular.setStyle(color_style_str)
+        var metalSpecular = new THREE.Color(color_style_str)
+        metalSpecular.offsetHSL(0, 0, 0.1)
+        var plasticSpecular = new THREE.Color(color_style_str)
+        plasticSpecular.offsetHSL(0, 0, 0.01)
+        material.isMetal ? material.specular.setStyle(metalSpecular.getStyle()) : material.specular.setStyle(plasticSpecular.getStyle())
     }
 
     removeColorPicker(ele) {

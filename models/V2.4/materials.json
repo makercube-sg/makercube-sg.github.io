@@ -1,106 +1,106 @@
 {
-    "description": "Materials to be loaded for v2.4",
+    "description": "Materials to be loaded for V2.4",
     "fixed": {
         "blackPlastic": {
-            "r": 5,
-            "g": 5,
-            "b": 5,
-            "metalness": 0.1,
-            "roughness": 0.8
+            "r": 15,
+            "g": 15,
+            "b": 15,
+            "metal": false,
+            "roughness": 0.55
         },
         "redPlastic": {
             "r": 200,
             "g": 25,
             "b": 25,
-            "metalness": 0.1,
-            "roughness": 0.8
+            "metal": false,
+            "roughness": 0.75
         },
         "whitePlastic": {
             "r": 180,
             "g": 180,
             "b": 180,
-            "metalness": 0.1,
-            "roughness": 0.8
+            "metal": false,
+            "roughness": 0.55
         },
         "brass": {
-            "r": 181,
-            "g": 166,
-            "b": 66,
-            "metalness": 0.6,
-            "roughness": 0.5
+            "r": 190,
+            "g": 140,
+            "b": 10,
+            "metal": false,
+            "roughness": 0.65
         },
         "steel": {
             "r": 176,
             "g": 179,
             "b": 182,
-            "metalness": 0.6,
-            "roughness": 0.3
+            "metal": true,
+            "roughness": 0.4
         }
     },
     "configurable": {
         "frameMetal": {
             "displayName": "Frame",
             "presets": ["rgba(10,10,10,1)", "rgba(160,160,160,1)"],
-            "r": 15,
-            "g": 15,
-            "b": 15,
-            "metalness": 0.6,
-            "roughness": 0.3
+            "r": 82,
+            "g": 82,
+            "b": 82,
+            "metal": true,
+            "roughness": 0.4
         },
         "solidPanelsPlastic": {
             "displayName": "Solid panels",
             "presets": ["rgba(10,10,10,1)", "rgba(30,30,30,1)"],
-            "r": 15,
-            "g": 15,
-            "b": 15,
-            "metalness": 0.1,
-            "roughness": 0.8
+            "r": 51,
+            "g": 51,
+            "b": 51,
+            "metal": false,
+            "roughness": 0.55
         },
         "clearPanelsPlastic": {
             "displayName": "Clear panels",
             "presets": ["rgba(0,0,0,0.2)", "rgba(0,0,0,0.8)"],
-            "alpha": 0.1,
+            "alpha": 0.65,
             "r": 0,
             "g": 0,
             "b": 0,
-            "metalness": 0.1,
-            "roughness": 0.3
+            "metal": true,
+            "roughness": 0.4
         },
         "basePlastic": {
             "displayName": "Base",
             "presets": ["rgba(10,10,10,1)", "rgba(30,30,30,1)"],
-            "r": 5,
-            "g": 5,
-            "b": 5,
-            "metalness": 0.1,
-            "roughness": 0.8
+            "r": 31,
+            "g": 31,
+            "b": 31,
+            "metal": false,
+            "roughness": 0.55
         },
         "accentPlastic": {
             "displayName": "Accent",
             "presets": ["rgba(225,5,5,1)", "rgba(5,5,225,1)"],
-            "r": 0,
-            "g": 128,
-            "b": 128,
-            "metalness": 0.1,
-            "roughness": 0.8
+            "r": 122,
+            "g": 195,
+            "b": 0,
+            "metal": false,
+            "roughness": 0.55
         },
 		"screwsMetal": {
 			"displayName": "Fasteners",
             "presets": ["rgba(10,10,10,1)", "rgba(160,160,160,1)"],
-            "r": 176,
-            "g": 179,
-            "b": 182,
-            "metalness": 0.6,
-            "roughness": 0.1
+            "r": 185,
+            "g": 185,
+            "b": 185,
+            "metal": true,
+            "roughness": 0.45
 		},
 		"railsMetal": {
 			"displayName": "Linear rails",
             "presets": ["rgba(10,10,10,1)", "rgba(160,160,160,1)"],
-            "r": 176,
-            "g": 179,
-            "b": 182,
-            "metalness": 0.6,
-            "roughness": 0.1
+            "r": 160,
+            "g": 160,
+            "b": 160,
+            "metal": true,
+            "roughness": 0.55
 		}
-    }    
+    }
 }

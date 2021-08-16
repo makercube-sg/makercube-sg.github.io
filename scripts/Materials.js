@@ -24,10 +24,16 @@ class Materials {
 
     static createMaterial(cfg) { // takes json cfg specifying material properties and returns material
         const colorStr = "rgb(" + [cfg.r, cfg.g, cfg.b].join(", ") + ")"
+        const baseColor = new THREE.Color(colorStr)
+        var metalSpecular = new THREE.Color(colorStr)
+        metalSpecular.offsetHSL(0, 0, 0.1)
+        var plasticSpecular = new THREE.Color(colorStr)
+        plasticSpecular.offsetHSL(0, 0, 0.01)
+
         var material = new THREE.MeshPhongMaterial({
             flatShading: false,
             color: new THREE.Color(colorStr),
-            specular: cfg.metal ? new THREE.Color('white') : new THREE.Color(colorStr),
+            specular: cfg.metal ? metalSpecular: plasticSpecular,
             shininess: 100*(1-cfg.roughness),
             transparent: true,
             opacity: cfg.alpha ? cfg.alpha : 1
