@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>3DP Color Configurator</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
+    <link href="css/styles.css?v=17" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <!-- Toolbar -->
+    <ul id="toolbar">
+        <!-- Toolbar has buttons by default. Dropdowns to be filled by Toolbar.js-->
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Components</a>
+            <div id="toggleDrop" class="dropdown-content"></div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Colors</a>
+            <div id="colorDrop" class="dropdown-content"></div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Printer</a>
+            <div id="modelDrop" class="dropdown-content"></div>
+        </li>
+        <li style="float:right">
+            <a href="javascript:void(0)" id="aboutBtn">
+                About
+            </a>
+        </li>
+    </ul>
+    <div id="overlayBg"></div>
+    <div id="overlay">
+        <p>
+        <a href = "https://github.com/mrdoob/three.js/">three.js</a> - 3D scenes loader<br>
+        <a href="https://github.com/EastDesire/jscolor">jscolor</a> - color picker<br>
+        Various designers/community members - 3D models<br><br>
+        Suggestions or issues? Find me at koonweee#0923<br>
+        <a href = "https://paypal.me/jtkw7">Buy me a coffee</a> (or add to my 3DP fund...)
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css">
+    <script src="scripts/Toolbar.js?v19"></script>
+    <script>
+        var assemblies = {
+            // "Voron 0.1": {
+            //     assembly: "models/V0.1/assembly.json?v=3",
+            //     materials: "models/V0.1/materials.json?v=2"
+            // },
+            // "Voron 1.8": {
+            //     assembly: "models/v1.8/assembly.json?v=4",
+            //     materials: "models/v1.8/materials.json?v=3"
+            // },
+            // "Voron 2.4": {
+            //     assembly: "models/V2.4/assembly.json?v=10",
+            //     materials: "models/V2.4/materials.json?v=3"
+            // },
+            // "Voron Switchwire": {
+            //     assembly: "models/vsw/assembly.json?v=6",
+            //     materials: "models/vsw/materials.json?v=3"
+            // },
+            // "Micron": {
+            //     assembly: "models/Micron/assembly.json?v=8",
+            //     materials: "models/Micron/materials.json?v=9"
+            // },
+            "v2_test": {
+                assembly: "models/v2_test/assembly.json",
+                materials: "models/v2_test/materials.json?v=4"
+            }
+        }
+        Toolbar.addAssemblies(assemblies)
+        Toolbar.addAboutButton()
+    </script>
+
+    <!-- Model viewer -->
+    <canvas id="ModelViewerCanvas"></canvas>
+    <script src="scripts/threejs/build/three.js"></script>
+    <script src="scripts/threejs/examples/js/controls/OrbitControls.js"></script>
+    <script src="scripts/threejs/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="scripts/threejs/examples/js/loaders/STLLoader.js"></script>
+    <script src="scripts/threejs/examples/js/environments/RoomEnvironment.js?v=1"></script>
+    <script src="scripts/ModelViewer.js?v=107"></script>
+    <script src="scripts/Materials.js?v=27"></script>
+    <script src="scripts/Assembly.js?v=37"></script>
+    <script>
+        const model_viewer = new ModelViewer()
+        first_key = Object.keys(assemblies)[0]
+        model_viewer.loadAssembly(assemblies[first_key].assembly, assemblies[first_key].materials)
+    </script>
+    <script>
+        $(function(){
+            resizeCanvas();
+        });
+
+        $(window).on('resize', function(){
+            resizeCanvas();
+            model_viewer.resizeRendererToDisplaySize()
+        });
+
+        function resizeCanvas()
+        {
+            var canvas = $('#ModelViewerCanvas');
+            canvas.css("width", $(window).width());
+            canvas.css("height", $(window).height());
+        }
+    </script>
+
+    <!-- Fullscreen button -->
+    <input id="fullscreenBtn" type="image" src="assets/images/fullscreen.png" />
+    <script>
+        /**
+         * Toggle fullscreen function who work with webkit and firefox.
+         * @function toggleFullscreen
+         * @param {Object} event
+         */
+        function toggleFullscreen(event) {
+        var element = document.body;
+
+            if (event instanceof HTMLElement) {
+                element = event;
+            }
+
+            var isFullscreen = document.webkitIsFullScreen || document.mozFullScreen || false;
+            const notCompatible = () => alert("Your device/browser is incompatible with fullscreen mode")
+            element.requestFullScreen = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || notCompatible
+            document.cancelFullScreen = document.cancelFullScreen || document.webkitCancelFullScreen || document.mozCancelFullScreen || notCompatible
+
+            isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
+        }
+        document.getElementById("fullscreenBtn").onclick = toggleFullscreen
+
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VY6KZFD8MS"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VY6KZFD8MS');
+    </script>
+</body>

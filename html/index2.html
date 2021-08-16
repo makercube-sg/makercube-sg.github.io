@@ -1,0 +1,61 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>xeogl Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <script src="../scripts/xeogl/xeogl.js"></script>
+    <script src="../scripts/xeogl/glTFModel.js"></script>
+    <script src="../scripts/xeogl/OBJModel.js"></script>
+    <script src="../scripts/xeogl/cameraFollowAnimation.js"></script>
+
+    <link href="../css/styles.css" rel="stylesheet"/>
+
+<body>
+
+<script>
+
+    var model = new xeogl.GLTFModel({
+        id: "obj",
+        src: "../Extrusion.obj",
+    });
+
+    var scene = model.scene
+    scene.clearLights()
+    var keyLight = new xeogl.DirLight({
+        id: "keyLight",
+        dir: [-0.4, -0.0, -1.0],
+        color: [1.0, 0, 0],
+        intensity: 1.5,
+        space: "view"
+    });
+    var rimLight = new xeogl.DirLight({
+        id: "rimLight",
+        dir: [0.3, 0.0, 0.5],
+        color: [0.9, 0.9, 1.0],
+        intensity: 1.5,
+        space: "view"
+    });
+
+    var camera = model.scene.camera;
+    camera.projection = "ortho" // ortho graphic projection
+
+    camera.eye = [0, 1, 0];
+    camera.look = [0, 0, 0];
+    camera.up = [0, 0, 1];
+
+    camera.worldAxis = [ // set +Z axis as up
+        1, 0, 0, // Right
+        0, 0, 1, // Up
+        0, -1, 0  // Forward
+        ]
+
+    new xeogl.CameraControl(); // User camera control
+    var cameraFlight = new xeogl.CameraFlightAnimation()
+    camera.gimbalLock = true // locks rotation in horizontal direction to be around Z axis
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+    "description": "Assembly data for v2_test model",
+    "meta": {
+        "assemblyID": "v2_test",
+        "srcPath": "models/v2_test/",
+        "height": 517,
+        "width": 422,
+        "depth": 424
+    },
+    "models": {
+        "frame": {
+            "src": "frame.stl?v=6",
+            "material": "frameMetal"
+        },
+        "base": {
+            "src": "base.stl?v=4",
+            "material": "basePlastic"
+        },
+        "accent": {
+            "src": "accent.stl?v=4",
+            "material": "accentPlastic"
+        },
+        "solidpanels": {
+            "src": "solidpanels.stl?v=4",
+            "material": "solidPanelsPlastic"
+        },
+        "clearpanels": {
+            "toggle": "Clear panels",
+            "src": "clearpanels.stl?v=4",
+            "material": "clearPanelsPlastic",
+            "visible": "false" 
+        },
+        "black": {
+            "src": "black.stl?v=5",
+            "material": "blackPlastic"
+        },
+        "red": {
+            "src": "red.stl?v=4",
+            "material": "redPlastic"
+        },
+        "white": {
+            "src": "white.stl?v=4",
+            "material": "whitePlastic"
+        },
+        "brass": {
+            "src": "brass.stl?v=4",
+            "material": "brass"
+        },
+        "steel": {
+            "src": "steel.stl?v=6",
+            "material": "steel"
+        },
+        "rails": {
+            "src": "rails.stl?v=4",
+            "material": "railsMetal"
+        },
+        "screws": {
+            "src": "screws.stl?v=4",
+            "material": "screwsMetal"
+        }
+    }
+}
