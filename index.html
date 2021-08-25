@@ -27,7 +27,8 @@
             <div id="modelDrop" class="dropdown-content"></div>
         </li>
         <li style="float:right">
-            <a href="https://makercube.me/">
+            <a href="https://makercube.me/"
+            onclick="captureOutboundLink('https://makercube.me/'); return false;">
                 🇸🇬 Shop
             </a>
         </li>
@@ -144,5 +145,19 @@
     gtag('js', new Date());
 
     gtag('config', 'G-VY6KZFD8MS');
+    </script>
+    <script>
+    /**
+    * Function that captures a click on an outbound link in Analytics.
+    * This function takes a valid URL string as an argument, and uses that URL string
+    * as the event label. Setting the transport method to 'beacon' lets the hit be sent
+    * using 'navigator.sendBeacon' in browser that support it.
+    */
+    var captureOutboundLink = function(url) {
+       ga('send', 'event', 'outbound', 'click', url, {
+         'transport': 'beacon',
+         'hitCallback': function(){document.location = url;}
+       });
+    }
     </script>
 </body>
